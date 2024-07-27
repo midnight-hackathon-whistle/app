@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:midnight_hackathon_project/routing/app_router.dart';
 
@@ -15,8 +14,9 @@ class WelcomeScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(20),
         children: [
+          Image.asset('assets/whistle.png'),
           const SizedBox(
-            height: 200,
+            height: 100,
           ),
           const Text(
             '0 memberships',
