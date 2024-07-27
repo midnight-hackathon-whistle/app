@@ -14,3 +14,13 @@ function parseQrCode(companyName, companyPubKey, employeeId) {
     employeeId: employeeId,
   }
 }
+
+// request a certificate from the company's certificate Server (certificateHost)
+// return a promise with the certificate or an error message
+function requestCertificate(certificateHost, employeePubKey, firstName, lastName, email, issuerKeyPair, issuerName) {
+  return new Promise((resolve, reject) => {
+    resolve(
+      issueCertificate(employeePubKey, firstName, lastName, email, issuerKeyPair, issuerName)
+    );
+  });
+}
