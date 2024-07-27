@@ -38,4 +38,4 @@ function submitReportToMidnight(hash, url, certificate) {
   });
 }
 
-const report = submitReport("Foobar leaks", new Blob(["Foobar leaks confidential data"], { type: "text/plain" }));
+// const report = submitReport("Foobar leaks", new Blob(["Foobar leaks confidential data"], { type: "text/plain" }));

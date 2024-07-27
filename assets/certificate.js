@@ -23,7 +23,9 @@ function signCertificate(cert, privateKey) {
   );
 }
 
-async function newCertificate(employeePubKey, firstName, lastName, email, issuerKeyPair, issuerName) {
+// This function is supposed to run on the company server to issue new certificates for employees
+// For demo purposes and simplicity we omit checks and validatiions and assume the requester is an employee of the company  
+async function issueCertificate(employeePubKey, firstName, lastName, email, issuerKeyPair, issuerName) {
   let cert = {
     data: {
       "issuerName": issuerName,

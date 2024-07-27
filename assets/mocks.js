@@ -45,5 +45,5 @@ const createEmployee = function() {
 // const company = createCompany();
 // const employee = createEmployee();
 // const qrCode = parseQrCode(company.name, company.pubKey, employee.personalId);
-// const cert = await newCertificate(employeeKeyPair.publicKey, employee.firstName, employee.lastName, employee.email, issuerKeyPair, company.name);
+// const cert = await issueCertificate(employeeKeyPair.publicKey, employee.firstName, employee.lastName, employee.email, issuerKeyPair, company.name);
 // const verified = await verifyCertificate(cert, issuerKeyPair.publicKey);
