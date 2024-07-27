@@ -1,0 +1,93 @@
+// used bboard.compact as template
+include "std";
+
+// user defined types:
+// using structs to define own types (convenience wrappers)
+export struct PkH {
+  pkh: Cell[Bytes[32]] //Opaque["string"]?
+}
+
+export struct Datahash {
+  hash: Cell[Bytes[32]]
+}
+
+export struct URL {
+  url: Cell[Opaque["string"]]
+}
+
+export struct VoteSubmission { 
+  vote_choice_index: Unsigned Integer[n]  //Q: is this syntax allowed for a variant???
+}
+
+export struct ReportInfo { 
+  report_about_pkh: PkH, 
+  report_hash: DataHash, 
+  report_url: URL
+} 
+
+export struct ReportSubmission {
+  report: Cell[ReportInfo]
+}
+
+// ledger (public state)
+
+ledger {
+    maybe_last_vote: Cell[Maybe[VoteSubmission]];
+    maybe_last_report: Cell[Maybe[ReportSubmission]]
+    instance: Counter;
+    submitter: Cell[Bytes[32]];  //like 'poster' in bboard example
+    constructor() {
+        ledger.maybe_last_vote = none[VoteSubmission]();
+        ledger.maybe_last_report = none[reportSubmission]();
+        ledger.instance.increment(1);
+        // reporter not initialised (defaults to 000....)
+  }
+}
+
+witness local_secret_key(): Bytes[32];
+
+/* export circuit post(message: Opaque["string"]): Void {
+    assert ledger.state == STATE.vacant
+        "Attempted to post to an occupied board";
+    ledger.poster = public_key(local_secret_key());
+    ledger.message = some[Opaque["string"]](message);
+    ledger.state = STATE.occupied;
+} */
+
+export circuit submit_vote(vote: VoteSubmission, about_pkh: PkH): Void {
+    ledger.submitter = public_key(local_secret_key());
+    assert local_check_is_member_of(about_pkh.pkh)  // <-- this needs to be a new witness function....
+        "Not a member of this organisation";
+    // ledger.last_submission = some[SUBMISSION](SUBMISSION::vote[vote]);
+    ledger.last_vote = some[VoteSubmission](vote);
+    ledger.last_report = none[ReportSubmission];
+    ledger.instance.increment();
+}
+
+export circuit submit_report(report: ReportSubmission, about_pkh: PkH): Void {
+    ledger.submitter = public_key(local_secret_key());
+    assert local_check_is_member_of(about_pkh.pkh)  // <-- this needs to be a new witness function....
+        "Not a member of this organisation";
+    ledger.last_vote = none[VoteSubmission];
+    ledger.last_report = some[ReportSubmission](report);
+    ledger.instance.increment();
+}
+
+/* export circuit take_down(): Opaque["string"] {
+    assert ledger.state == STATE.occupied
+        "Attempted to take down post from an empty board";
+    assert ledger.poster == public_key(local_secret_key())
+        "Attempted to take down post, but not the current poster";
+    const former_msg = ledger.message.value;
+    ledger.state = STATE.vacant;
+    ledger.instance.increment(1);
+    ledger.message = none[Opaque["string"]]();
+    return former_msg;
+} */
+
+export circuit public_key(sk: Bytes[32]): Bytes[32] {
+  return persistent_hash(
+           persistent_hash(pad(32, "whistle:pk:"),
+                           ledger.instance as Field as Bytes[32]),
+           sk);
+}
