@@ -55,18 +55,3 @@ function verifyCertificate(certificate, publicKey) {
     certificate.encryptedData,
   );
 }
-
-
-// -----------------------------
-
-const issuerKeyPair = await generateKeyPair()
-  .then((keyPair) => { return keyPair })
-  .catch((err) => { console.error(err) });
-
-const employeeKeyPair = await generateKeyPair()
-  .then((keyPair) => { return keyPair })
-  .catch((err) => { console.error(err) });
-
-
-const cert = await newCertificate(employeeKeyPair.publicKey, "John", "Doe", "john.doe@abc.med", issuerKeyPair, "ABC Medical");
-const verified = await verifyCertificate(cert, issuerKeyPair.publicKey)
