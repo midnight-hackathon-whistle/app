@@ -1,16 +1,22 @@
-# midnight_hackathon_project
+# midnight hackathon project "whistle"
 
-A new Flutter project.
+The basic (mocked) internal API
 
-## Getting Started
+```
+// 1. user gets a wallet on midnight
+createWallet()
 
-This project is a starting point for a Flutter application.
+// 2. upon initial registration: extract information provided by your company
+parseQrCode()
 
-A few resources to get you started if this is your first Flutter project:
+// 3. user claims membership in organisation and receives signed certificate
+requestCertificate()
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+// 4. verify the signature of the certificate
+verifyCertificate()
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+// 5. submit report
+submitReport()
+```
+
+The uncompiled and untested compact contract for midnight can be found in the root folder `whistle_0.01.compact`.
