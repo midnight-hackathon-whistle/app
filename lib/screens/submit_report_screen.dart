@@ -22,7 +22,7 @@ class SubmitReportScreen extends StatelessWidget {
           const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {},
-            child: const Text('Pick the report file'),
+            child: const Text('Upload the report file'),
           ),
           const SizedBox(height: 20),
           FilledButton(
@@ -30,7 +30,7 @@ class SubmitReportScreen extends StatelessWidget {
               while (GoRouter.of(context).canPop()) {
                 GoRouter.of(context).pop();
               }
-              context.pushReplacementNamed(AppRoute.submitReportSuccess.name);
+              context.pushNamed(AppRoute.submitReportSuccess.name);
             },
             child: const Text('Submit'),
           ),

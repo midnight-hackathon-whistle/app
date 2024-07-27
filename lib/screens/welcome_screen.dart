@@ -19,7 +19,7 @@ class WelcomeScreen extends StatelessWidget {
             height: 100,
           ),
           const Text(
-            '0 memberships',
+            'Scan a QR Code to get started',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 20,
@@ -30,7 +30,7 @@ class WelcomeScreen extends StatelessWidget {
             onPressed: () {
               context.pushNamed(AppRoute.scanQRCode.name);
             },
-            child: const Text('Scan the QR Code'),
+            child: const Text('Scan'),
           ),
         ],
       ),

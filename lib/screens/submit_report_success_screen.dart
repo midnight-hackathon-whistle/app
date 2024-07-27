@@ -10,7 +10,10 @@ class SubmitReportSuccessScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Success!'),
+        title: const Text(
+          'Success!',
+          style: TextStyle(fontSize: 40),
+        ),
       ),
       body: ListView(
         padding: const EdgeInsets.all(20),
@@ -30,16 +33,11 @@ class SubmitReportSuccessScreen extends StatelessWidget {
             leading: const SizedBox(
               width: 50,
             ),
-            title: const Text(
-              'IPFS Link:',
-              textAlign: TextAlign.center,
-            ),
-            subtitle: const SelectableText(
-              'Link',
+            title: const SelectableText(
+              'Link to uploaded file',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.blue,
-                decoration: TextDecoration.underline,
                 fontSize: 16,
               ),
             ),
@@ -49,10 +47,7 @@ class SubmitReportSuccessScreen extends StatelessWidget {
           const SizedBox(height: 450),
           FilledButton(
             onPressed: () {
-              while (GoRouter.of(context).canPop()) {
-                GoRouter.of(context).pop();
-              }
-              context.pushReplacementNamed(AppRoute.membershipList.name);
+              context.pushNamed(AppRoute.membershipList.name);
             },
             child: const Text('Okay'),
           )

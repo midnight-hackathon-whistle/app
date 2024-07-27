@@ -17,7 +17,7 @@ class MembershipListScreen extends StatelessWidget {
           ListTile(
             dense: true,
             leading: const Text(
-              'Company Name',
+              'Rowing Airlines',
               style: TextStyle(fontSize: 20),
             ),
             trailing: const Text('Reports: 0', style: TextStyle(fontSize: 13)),

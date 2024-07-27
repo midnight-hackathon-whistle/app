@@ -76,15 +76,18 @@ GoRouter goRouter(GoRouterRef ref) {
                 path: 'submit-report',
                 name: AppRoute.submitReport.name,
                 builder: (context, state) => const SubmitReportScreen(),
+                routes: [
+                  GoRoute(
+                    path: 'submit-report-success',
+                    name: AppRoute.submitReportSuccess.name,
+                    builder: (context, state) =>
+                        const SubmitReportSuccessScreen(),
+                  ),
+                ],
               ),
             ],
           ),
         ],
-      ),
-      GoRoute(
-        path: '/submit-report-success',
-        name: AppRoute.submitReportSuccess.name,
-        builder: (context, state) => const SubmitReportSuccessScreen(),
       ),
     ],
     errorBuilder: (context, state) => const NotFoundScreen(),

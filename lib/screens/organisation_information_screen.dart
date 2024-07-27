@@ -49,11 +49,7 @@ class OrganisationInformationScreen extends ConsumerWidget {
                       onPressed: () async {
                         await ref.read(requestSignFutureProvider.future);
 
-                        while (GoRouter.of(context).canPop()) {
-                          GoRouter.of(context).pop();
-                        }
-                        context.pushReplacementNamed(
-                            AppRoute.membershipCertificate.name);
+                        context.pushNamed(AppRoute.membershipCertificate.name);
                       },
                       child: const Text('Confirm and request sign'),
                     ),

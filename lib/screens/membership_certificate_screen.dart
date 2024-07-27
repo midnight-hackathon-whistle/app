@@ -14,7 +14,10 @@ class MembershipCertificateScreen extends ConsumerWidget {
     final employee = ref.watch(employeeStateProvider)!;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Confirmed!'),
+        title: const Text(
+          'Confirmed!',
+          style: TextStyle(fontSize: 40),
+        ),
       ),
       body: ListView(
         children: [
@@ -38,20 +41,26 @@ class MembershipCertificateScreen extends ConsumerWidget {
             title: const Text('Personal ID'),
             subtitle: Text(employee.personalId),
           ),
-          ListTile(
-            title: const Text('PIN'),
-            subtitle: Text(employee.pin),
+          const ListTile(
+            title: Text('Please check that the information above is correct.'),
           ),
           Padding(
             padding: const EdgeInsets.all(8),
             child: FilledButton(
               onPressed: () {
-                while (GoRouter.of(context).canPop()) {
-                  GoRouter.of(context).pop();
-                }
-                context.pushReplacementNamed(AppRoute.membershipList.name);
+                context.pushNamed(AppRoute.membershipList.name);
               },
               child: const Text('Okay'),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: FilledButton(
+              onPressed: () {},
+              style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.all(Colors.red),
+              ),
+              child: const Text('Something is wrong?'),
             ),
           ),
         ],

@@ -9,24 +9,24 @@ class MembershipDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Company Name'),
+        title: const Text('Rowing Airlines'),
       ),
       body: ListView(
         padding: const EdgeInsets.all(20),
         children: [
           ListTile(
             onTap: () {},
-            title: const Text('Submit vote'),
+            title: const Text('Submit Vote'),
           ),
           ListTile(
             onTap: () {
               context.pushNamed(AppRoute.submitReport.name);
             },
-            title: const Text('Submit report'),
+            title: const Text('Submit Report'),
           ),
           ListTile(
             onTap: () {},
-            title: const Text('See your submissions'),
+            title: const Text('See your previous Submissions'),
           ),
         ],
       ),
