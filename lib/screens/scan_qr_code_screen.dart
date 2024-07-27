@@ -11,14 +11,22 @@ class ScanQRCodeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Scan QR Code'),
       ),
-      body: Center(
-        child: ElevatedButton(
+      body: ListView(padding: const EdgeInsets.all(16), children: [
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 100),
+          child: Icon(
+            Icons.qr_code,
+            size: 300,
+          ),
+        ),
+        const SizedBox(height: 200),
+        FilledButton(
           onPressed: () {
             context.pushNamed(AppRoute.organisationInformation.name);
           },
-          child: const Text('Organizational Information'),
+          child: const Text('Next'),
         ),
-      ),
+      ]),
     );
   }
 }

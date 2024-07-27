@@ -25,7 +25,7 @@ function signCertificate(cert, privateKey) {
 
 // This function is supposed to run on the company server to issue new certificates for employees
 // For demo purposes and simplicity we omit checks and validatiions and assume the requester is an employee of the company  
-async function issueCertificate(employeePubKey, firstName, lastName, email, issuerKeyPair, issuerName) {
+function issueCertificate(employeePubKey, firstName, lastName, email, issuerKeyPair, issuerName) {
   let cert = {
     data: {
       "issuerName": issuerName,
@@ -39,11 +39,12 @@ async function issueCertificate(employeePubKey, firstName, lastName, email, issu
   }
 
   cert.encryptedData = new TextEncoder().encode(JSON.stringify(cert.data));
-  cert.signature = await signCertificate(cert.encryptedData, issuerKeyPair.privateKey)
-    .then((signature) => { return signature })
+  signCertificate(cert.encryptedData, issuerKeyPair.privateKey)
+    .then((signature) => {
+      cert.signature = signature;
+      window.flutter_inappwebview.callHandler('certificate', cert);
+    })
     .catch((err) => { console.error(err) });
-
-  return cert;
 }
 
 function verifyCertificate(certificate, publicKey) {

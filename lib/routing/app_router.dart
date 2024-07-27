@@ -52,18 +52,15 @@ GoRouter goRouter(GoRouterRef ref) {
                 name: AppRoute.organisationInformation.name,
                 builder: (context, state) =>
                     const OrganisationInformationScreen(),
-                routes: [
-                  GoRoute(
-                    path: 'membership-certificate',
-                    name: AppRoute.membershipCertificate.name,
-                    builder: (context, state) =>
-                        const MembershipCertificateScreen(),
-                  ),
-                ],
               ),
             ],
           ),
         ],
+      ),
+      GoRoute(
+        path: '/membership-certificate',
+        name: AppRoute.membershipCertificate.name,
+        builder: (context, state) => const MembershipCertificateScreen(),
       ),
       GoRoute(
         path: '/membership-list',
@@ -79,18 +76,15 @@ GoRouter goRouter(GoRouterRef ref) {
                 path: 'submit-report',
                 name: AppRoute.submitReport.name,
                 builder: (context, state) => const SubmitReportScreen(),
-                routes: [
-                  GoRoute(
-                    path: 'submit-report-success',
-                    name: AppRoute.submitReportSuccess.name,
-                    builder: (context, state) =>
-                        const SubmitReportSuccessScreen(),
-                  ),
-                ],
               ),
             ],
           ),
         ],
+      ),
+      GoRoute(
+        path: '/submit-report-success',
+        name: AppRoute.submitReportSuccess.name,
+        builder: (context, state) => const SubmitReportSuccessScreen(),
       ),
     ],
     errorBuilder: (context, state) => const NotFoundScreen(),
