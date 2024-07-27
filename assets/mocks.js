@@ -1,8 +1,4 @@
 
-import { generateKeyPair, newCertificate, verifyCertificate } from './certificate.js';
-import { createWallet, parseQrCode } from './register.js';
-
-
 // -----------------------------
 // Wallet mock data
 
@@ -12,7 +8,7 @@ const walletAddress = createWallet();
 // -----------------------------
 // Company mock data
 
-const issuerKeyPair = await generateKeyPair()
+const issuerKeyPair = generateKeyPair()
   .then((keyPair) => { return keyPair })
   .catch((err) => { console.error(err) });
 
@@ -29,7 +25,7 @@ const createCompany = function() {
 // -----------------------------
 // Employee mock data
 
-const employeeKeyPair = await generateKeyPair()
+const employeeKeyPair = generateKeyPair()
   .then((keyPair) => { return keyPair })
   .catch((err) => { console.error(err) });
 
