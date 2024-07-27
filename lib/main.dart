@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:midnight_hackathon_project/routing/app_router.dart';
+import 'package:midnight_hackathon_project/state/headless_web_view_provider.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,6 +28,9 @@ class Myapp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Starts the headless web view
+    ref.read(headlessWebViewProvider).run();
+
     return MaterialApp.router(
       routerConfig: ref.watch(goRouterProvider),
       debugShowCheckedModeBanner: false,
@@ -39,14 +43,17 @@ class Myapp extends ConsumerWidget {
   }
 }
 
-class OldMyApp extends StatefulWidget {
-  const OldMyApp({super.key});
+class MidnightHeadlessWebView extends StatefulWidget {
+  const MidnightHeadlessWebView({required this.child, super.key});
+
+  final Widget? child;
 
   @override
-  State<OldMyApp> createState() => _OldMyAppState();
+  State<MidnightHeadlessWebView> createState() =>
+      _MidnightHeadlessWebViewState();
 }
 
-class _OldMyAppState extends State<OldMyApp> {
+class _MidnightHeadlessWebViewState extends State<MidnightHeadlessWebView> {
   HeadlessInAppWebView? headlessWebView;
   String url = "";
 

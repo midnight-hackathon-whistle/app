@@ -32,3 +32,4 @@ flutter:
   assets:
     - assets/index.html
     - assets/lodash.js
+    - assets/certificate.js
